@@ -5,7 +5,9 @@ import com.springmongo.springmongoAggr.mapper.AccountMapper;
 import com.springmongo.springmongoAggr.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -28,4 +30,21 @@ public class AccountService {
         return null;
     }
 
+    public String updateAccount(Account account) {
+        List<com.springmongo.springmongoAggr.entity.Account> accountList = accountDAO.findByAccountNumber
+                (account.getAccountNumber());
+        if(!CollectionUtils.isEmpty(accountList) && accountList.size()>1){
+            return "Given accountNumber we found duplications please contact with your bank...!";
+        }
+        if(!CollectionUtils.isEmpty(accountList) && accountList.size()<=1){
+            account.setId(accountList.stream().findFirst().get().getId());
+            com.springmongo.springmongoAggr.entity.Account accountObj = accountDAO.save(
+                    accountMapperImpl.mapModelToEntity(account));
+            if(Objects.nonNull(accountObj)){
+                return "Updated successfully";
+            }
+        }
+        return "Given accountNumber not found in database";
+
+    }
 }

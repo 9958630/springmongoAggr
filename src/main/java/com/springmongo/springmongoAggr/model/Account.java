@@ -4,11 +4,20 @@ import java.util.Date;
 
 public class Account {
     public String id;
+    public String accountNumber;
     public String accountName;
     public String accountType;
     public Integer amount;
     public String accountAddr;
     public Date currentTs;
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     public String getId() {
         return id;
