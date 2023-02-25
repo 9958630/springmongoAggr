@@ -10,6 +10,7 @@ public class Account {
     public Integer amount;
     public String accountAddr;
     public Date currentTs;
+    public Integer max;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -65,5 +66,13 @@ public class Account {
 
     public void setCurrentTs(Date currentTs) {
         this.currentTs = currentTs;
+    }
+
+    public Integer getMax() {
+        return max;
+    }
+
+    public void setMax(Integer max) {
+        this.max = max;
     }
 }

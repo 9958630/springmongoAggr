@@ -4,6 +4,7 @@ import com.springmongo.springmongoAggr.DAO.AccountDAO;
 import com.springmongo.springmongoAggr.mapper.AccountMapper;
 import com.springmongo.springmongoAggr.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -45,6 +46,28 @@ public class AccountService {
             }
         }
         return "Given accountNumber not found in database";
+
+    }
+
+    public List<Account> getAccountName(String name) {
+        return accountMapperImpl.listEntityTOModel(accountDAO.getAccountName(name));
+    }
+
+    public Integer getAccCountByAccType(String accountType) {
+        return accountDAO.getAllAccountByType(accountType);
+    }
+
+    public List<Account> getAllAccount(Integer limit, Integer skip) {
+        return accountMapperImpl.listEntityTOModel(accountDAO.fetchAllAccounts(limit,skip));
+    }
+
+    public List<Account> getMaxAndMinAmount(String flag) {
+
+        if(flag.equalsIgnoreCase("Max")){
+            return accountMapperImpl.listEntityTOModel(accountDAO.getMaxAmount());
+        }else{
+            return accountMapperImpl.listEntityTOModel(accountDAO.getMinAmount());
+        }
 
     }
 }
