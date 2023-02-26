@@ -40,4 +40,20 @@ public interface AccountDAO extends MongoRepository<Account,String> {
             "{$group:{_id:$accountType,max:{$min:'$amount'}}}"
     })
     List<Account> getMinAmount();
+
+    @Aggregation(pipeline = {
+            "{$project:{_id:$accountNumber,max : {$sum: '$transactions.processAmt'}}}"
+    })
+    List<Account> getSumAmount();
+
+    @Aggregation(pipeline = {
+            "{$project:{_id:$accountNumber,max : {$avg: '$transactions.processAmt'}}}"
+    })
+    List<Account> getAvgAmount();
+
+    @Aggregation(pipeline = {
+            "{$lookup:{from : 'employee',localField:'amount',foreignField:'salary',as:'employee'}}"
+
+    })
+    List<Account> getAccAndEmpDetails();
 }

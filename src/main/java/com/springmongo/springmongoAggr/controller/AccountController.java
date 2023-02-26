@@ -47,6 +47,16 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getMaxAndMinAmount(flag),HttpStatus.OK);
     }
 
+    @GetMapping("/getAccountSumAndAvg")
+    public ResponseEntity<List<Account>> getAccountSumAndAvg(@RequestParam("flag")String flag){
+        return new ResponseEntity<>(accountService.getAccountSumAndAvg(flag),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAccAndEmployeeDetails")
+    public ResponseEntity<List<Account>> getAccAndEmpDetails(){
+        return new ResponseEntity<>(accountService.getAccAndEmpDetails(),HttpStatus.OK);
+    }
+
     @PatchMapping("/updateAccount")
     public ResponseEntity<String> updateAccountDetails(@RequestBody Account account){
         if(Objects.nonNull(account)){

@@ -1,6 +1,10 @@
 package com.springmongo.springmongoAggr.model;
 
+import com.springmongo.springmongoAggr.AccountSummary;
+import com.springmongo.springmongoAggr.Transactions;
+
 import java.util.Date;
+import java.util.List;
 
 public class Account {
     public String id;
@@ -11,6 +15,9 @@ public class Account {
     public String accountAddr;
     public Date currentTs;
     public Integer max;
+    private AccountSummary accountSummary;   //object
+    private List<Transactions> transactions;   //array
+    private List<Employee> employee;                                            //array give me name
 
     public String getAccountNumber() {
         return accountNumber;
@@ -74,5 +81,29 @@ public class Account {
 
     public void setMax(Integer max) {
         this.max = max;
+    }
+
+    public AccountSummary getAccountSummary() {
+        return accountSummary;
+    }
+
+    public void setAccountSummary(AccountSummary accountSummary) {
+        this.accountSummary = accountSummary;
+    }
+
+    public List<Transactions> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transactions> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Employee> getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(List<Employee> employee) {
+        this.employee = employee;
     }
 }

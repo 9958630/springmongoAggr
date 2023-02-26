@@ -70,4 +70,16 @@ public class AccountService {
         }
 
     }
+
+    public List<Account> getAccountSumAndAvg(String flag) {
+        if(flag.matches("Sum|SUM|S|sum")){
+            return accountMapperImpl.listEntityTOModel(accountDAO.getSumAmount());
+        }
+        return accountMapperImpl.listEntityTOModel(accountDAO.getAvgAmount());
+
+    }
+
+    public List<Account> getAccAndEmpDetails() {
+        return accountMapperImpl.listEntityTOModel(accountDAO.getAccAndEmpDetails());
+    }
 }
